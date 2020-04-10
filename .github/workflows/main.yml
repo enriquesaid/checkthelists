@@ -14,13 +14,22 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+      name: install dependencies
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v1
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      - name: Flutter action
-        uses: subosito/flutter-action@v1.2.0
-      - run: flutter pub get
-      - run: flutter test
-      - run: flutter build apk
+      - name: install dependencies
+        uses: steebchen/flutter@v1.0.0
+        with:
+          args: pub get
+
+      - name: run tests
+        uses: steebchen/flutter@v1.0.0
+        with:
+          args: test
+
+      - name: build apk
+        uses: steebchen/flutter@v1.0.0
+        with:
+          args: build apk --release
