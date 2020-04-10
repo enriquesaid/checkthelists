@@ -54,7 +54,6 @@ class _ListsState extends State<ListsPage> {
                   itemBuilder: (BuildContext buildContext, int i) => Padding(
                     padding: EdgeInsets.symmetric(horizontal: 10),
                     child: CheckListCard(
-                      index: i,
                       category: hasCategory ? _categoryById(checklists[i].category) : widget.category,
                       checklist: checklists[i],
                       browser: ChromeSafariBrowser(bFallback: InAppBrowser()),

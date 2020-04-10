@@ -9,10 +9,12 @@ class AppLogo extends StatelessWidget {
     this.dark = false,
   }) : super(key: key);
 
+  String get logo => 'images/${dark ? 'LogoDark' : 'Logo'}.svg';
+
   @override
   Widget build(BuildContext context) {
     return SvgPicture.asset(
-      'images/${dark ? 'LogoDark' : 'Logo'}.svg',
+      logo,
       alignment: Alignment.topLeft,
     );
   }

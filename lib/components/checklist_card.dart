@@ -4,14 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
 class CheckListCard extends StatelessWidget {
-  final int index;
   final Category category;
   final Checklist checklist;
   final ChromeSafariBrowser browser;
 
   const CheckListCard({
     Key key,
-    this.index = 0,
     this.checklist,
     this.category,
     this.browser
@@ -38,50 +36,59 @@ class CheckListCard extends StatelessWidget {
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            RichText(
-              overflow: TextOverflow.ellipsis,
-              maxLines: 8,
-              text: TextSpan(
-                text: '${checklist.title} - ',
-                style: Theme.of(context).textTheme.title,
-                children: [
-                  TextSpan(
-                    text: checklist.description,
-                    style: Theme.of(context).textTheme.body1
-                  )
-                ]
-              )
+            Expanded(
+              child: RichText(
+                overflow: TextOverflow.ellipsis,
+                maxLines: 8,
+                text: TextSpan(
+                  text: '${checklist.title} - ',
+                  style: Theme.of(context).textTheme.title,
+                  children: [
+                    TextSpan(
+                      text: checklist.description,
+                      style: Theme.of(context).textTheme.body1
+                    )
+                  ]
+                )
+              ),
             ),
-            Spacer(),
-            // Row(
-            //   children: <Widget>[
-            //     Icon(
-            //       Icons.list,
-            //       color: Theme.of(context).textTheme.subtitle.color
-            //     ),
-            //     SizedBox(width: 5),
-            //     Text(
-            //       checklist.difficulty,
-            //       style: Theme.of(context).textTheme.subtitle,
-            //       maxLines: 1,
-            //       overflow: TextOverflow.ellipsis,
-            //     )
-            //   ]
-            // ),
+            SizedBox(height: 10),
+            Wrap(
+              children: <Widget>[
+                Icon(
+                  Icons.list,
+                  color: Theme.of(context).textTheme.subtitle.color
+                ),
+                SizedBox(width: 5),
+                Padding(
+                  padding: EdgeInsets.only(top: 3),
+                  child: Text(
+                    checklist.difficulty,
+                    style: Theme.of(context).textTheme.subtitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                )
+              ]
+            ),
             Visibility(
               visible: category.id != -1,
-              child: Row(
+              child: Wrap(
               children: <Widget>[
                   Icon(
                     Icons.category,
                     color: Theme.of(context).textTheme.subtitle.color
                   ),
                   SizedBox(width: 5),
-                  Text(
-                    '${category.label}',
-                    style: Theme.of(context).textTheme.subtitle
+                  Padding(
+                    padding: EdgeInsets.only(top: 6),
+                    child: Text(
+                      '${category.label}',
+                      style: Theme.of(context).textTheme.subtitle
+                    ),
                   )
                 ],
               ),
@@ -92,7 +99,7 @@ class CheckListCard extends StatelessWidget {
               textColor: Theme.of(context).accentColor,
               child: Text(buttonText),
               onPressed: () async {
-                await browser.open(
+                await browser?.open(
                   url: checklist.url,
                   options: ChromeSafariBrowserClassOptions(
                     android: AndroidChromeCustomTabsOptions(addShareButton: false),
