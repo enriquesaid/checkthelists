@@ -17,19 +17,10 @@ jobs:
       name: install dependencies
       runs-on: ubuntu-latest
       steps:
-      - uses: actions/checkout@v1
-
-      - name: install dependencies
-        uses: steebchen/flutter@v1.0.0
-        with:
-          args: pub get
-
-      - name: run tests
-        uses: steebchen/flutter@v1.0.0
-        with:
-          args: test
-
-      - name: build apk
-        uses: steebchen/flutter@v1.0.0
-        with:
-          args: build apk --release
+        - name: Flutter action
+        - uses: actions/checkout@v1  
+        - uses: actions/setup-java@v1 
+        - uses: subosito/flutter-action@v1.2.0
+        - run: flutter pub get
+        - run: flutter test
+        - run: flutter build apk
