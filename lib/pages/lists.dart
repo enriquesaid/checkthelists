@@ -36,8 +36,8 @@ class _ListsState extends State<ListsPage> {
   Widget build(BuildContext context) {
     return DefaultScaffold(
       currentIndex: currentIndex,
-      body: SingleChildScrollView(
-        child: Center(
+      body: Center(
+        child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
@@ -64,8 +64,8 @@ class _ListsState extends State<ListsPage> {
                 )
               )
             ]
-          )
-        ),
+          ),
+        )
       )
     );
   }
