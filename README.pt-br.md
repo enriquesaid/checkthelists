@@ -1,4 +1,4 @@
-# CheckTheLists
+# CheckTheLists ![Tests & Build](https://github.com/enriquesaid/checkthelists/workflows/Tests%20&%20Build/badge.svg)
 
 É um simples aplicativo que reune checklists de diversas categorias (startup, tech, marketing...)
 
