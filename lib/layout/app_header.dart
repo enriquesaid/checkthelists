@@ -26,7 +26,7 @@ class AppHeader extends StatelessWidget {
     );
   }
 
-  Future<void> _infoDialog(context) async {
+  Future<void> _infoDialog(context) {
     return showDialog<void>(
       context: context,
       builder: (BuildContext context) {
