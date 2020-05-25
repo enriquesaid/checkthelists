@@ -7,12 +7,10 @@ import 'package:checkthelists/data/categories.dart' as categoryData;
 
 void main() {
   MaterialApp screen(Widget widget) => MaterialApp(
-    home: Scaffold(
-      body: Container(
-        child:  widget
-      ),
-    ),
-  );
+        home: Scaffold(
+          body: Container(child: widget),
+        ),
+      );
 
   testWidgets('button text should be start', (WidgetTester tester) async {
     final widget = CheckListCard(
@@ -28,10 +26,8 @@ void main() {
   testWidgets('button text should be completed', (WidgetTester tester) async {
     final widget = CheckListCard(
       category: categoryData.dataList.first,
-      checklist: Checklist.fromMap({
-        ...data.dataList.first.toMap(),
-        'completed': true
-      }),
+      checklist: Checklist.fromMap(
+          {...data.dataList.first.toMap(), 'completed': true}),
     );
 
     await tester.pumpWidget(screen(widget));
