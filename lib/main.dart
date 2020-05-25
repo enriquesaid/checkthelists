@@ -2,12 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:checkthelists/app.dart';
 
-void main() => App.bootstrap();
+void main() => App().bootstrap(runApp, before: () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      await SystemChrome.setPreferredOrientations(
+          [DeviceOrientation.portraitUp]);
+    });
 
 class App {
-  static bootstrap([Function runApp = runApp]) async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
-    runApp(CheckTheListsApp());
+  Future<void> bootstrap(Function runner, {Function before}) async {
+    await (before ?? (() {}))();
+    runner(CheckTheListsApp());
   }
 }

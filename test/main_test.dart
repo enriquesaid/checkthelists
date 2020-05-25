@@ -5,17 +5,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class FakeRunAppClass {
+class FakeRunApp {
   void runApp(dynamic widget) {}
 }
 
-class RunAppMock extends Mock implements FakeRunAppClass {}
+class RunAppMock extends Mock implements FakeRunApp {}
+
+class FakeApp {
+  void before() {}
+}
+
+class AppMock extends Mock implements FakeApp {}
 
 void main() {
-  test('runApp should be called by bootstrap method', () async {
+  test('before and runApp methods should be called by bootstrap method',
+      () async {
     var runAppMock = RunAppMock();
-    await App.bootstrap(runAppMock.runApp);
-    verify(runAppMock.runApp(any)).called(1);
+    var appMock = AppMock();
+    var app = App();
+    await app.bootstrap(runAppMock.runApp, before: appMock.before);
+    verifyInOrder([appMock.before(), runAppMock.runApp(any)]);
   });
 
   testWidgets('HomePage should be ListsPage', (WidgetTester tester) async {
