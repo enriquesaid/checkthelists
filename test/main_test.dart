@@ -18,8 +18,7 @@ class FakeApp {
 class AppMock extends Mock implements FakeApp {}
 
 void main() {
-  test('before and runApp methods should be called by bootstrap method',
-      () async {
+  test('App bootstrap method', () async {
     var runAppMock = RunAppMock();
     var appMock = AppMock();
     var app = App();
@@ -27,7 +26,8 @@ void main() {
     verifyInOrder([appMock.before(), runAppMock.runApp(any)]);
   });
 
-  testWidgets('HomePage should be ListsPage', (WidgetTester tester) async {
+  testWidgets('HomePage should be ListsPage with MaterialApp',
+      (WidgetTester tester) async {
     await tester.pumpWidget(CheckTheListsApp());
     expect(find.byType(MaterialApp), findsOneWidget);
     expect(find.byType(ListsPage), findsOneWidget);
