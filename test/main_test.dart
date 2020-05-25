@@ -5,25 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-class FakeRunApp {
+class FakeFunctions {
   void runApp(dynamic widget) {}
-}
-
-class RunAppMock extends Mock implements FakeRunApp {}
-
-class FakeApp {
   void before() {}
 }
 
-class AppMock extends Mock implements FakeApp {}
+class FunctionsMock extends Mock implements FakeFunctions {}
 
 void main() {
   test('App bootstrap method', () async {
-    var runAppMock = RunAppMock();
-    var appMock = AppMock();
+    var functionMock = FunctionsMock();
     var app = App();
-    await app.bootstrap(runAppMock.runApp, before: appMock.before);
-    verifyInOrder([appMock.before(), runAppMock.runApp(any)]);
+    await app.bootstrap(functionMock.runApp, before: functionMock.before);
+    verifyInOrder([functionMock.before(), functionMock.runApp(any)]);
   });
 
   testWidgets('HomePage should be ListsPage with MaterialApp',
