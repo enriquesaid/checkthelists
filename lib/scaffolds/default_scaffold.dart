@@ -6,11 +6,8 @@ class DefaultScaffold extends StatefulWidget {
   final Widget body;
   final int currentIndex;
 
-  DefaultScaffold({
-    Key key,
-    this.currentIndex = 0,
-    this.body
-  }) : super(key: key);
+  DefaultScaffold({Key key, this.currentIndex = 0, this.body})
+      : super(key: key);
 
   @override
   _DefaultScaffoldState createState() => _DefaultScaffoldState();
@@ -32,7 +29,7 @@ class _DefaultScaffoldState extends State<DefaultScaffold> {
       body: widget.body,
       bottomNavigationBar: AppNavigationBar(
         currentActivate: currentActivate,
-        currentIndex: widget.currentIndex??0,
+        currentIndex: widget.currentIndex ?? 0,
       ),
     );
   }
