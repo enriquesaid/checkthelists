@@ -1,7 +1,4 @@
-import 'package:checkthelists/app.dart';
-import 'package:checkthelists/pages/lists.dart';
 import 'package:checkthelists/main.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
@@ -18,12 +15,5 @@ void main() {
     var app = App();
     await app.bootstrap(functionMock.runApp, before: functionMock.before);
     verifyInOrder([functionMock.before(), functionMock.runApp(any)]);
-  });
-
-  testWidgets('HomePage should be ListsPage with MaterialApp',
-      (WidgetTester tester) async {
-    await tester.pumpWidget(CheckTheListsApp());
-    expect(find.byType(MaterialApp), findsOneWidget);
-    expect(find.byType(ListsPage), findsOneWidget);
   });
 }
